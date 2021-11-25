@@ -1,16 +1,26 @@
 # 푸른황소의 혼 - 7조
 --------------------------------------------------
-## :notebook_with_decorative_cover: Netflix Helper 
-크롤링 -> C#을 통해 csv파일 호출 및 읽기 -> 검색 및 장르선택 기능을 통해 검색 
+## :notebook_with_decorative_cover: 프로젝트 내용
+###  [Netflix Helper]
+#### - justwatch(https://www.justwatch.com/kr) 를 통해 한국 동영상 서비스 목록에서 크롤링 시도
+#### - CSV 데이터 파일을 C#과 연동
+#### - C# 디자인을 통해 프로그램 기능 구현
+
+<br>
 
 ## :notebook_with_decorative_cover: 구현결과
 <img src="https://user-images.githubusercontent.com/81347125/143462681-6395d376-9dca-4cc9-9802-2a87d7ab6b26.gif" width="60%">  
 
+<br>
 
+## :notebook_with_decorative_cover:설치방법 및 사용 방법
+#### 1. git clone 생성
+#### 2. visual studio C#, sln 파일 실행
+#### 3. textBox 및 ComboBox를 통해 검색,장르 기능 사용 
 
 <br>
 
-## :notebook_with_decorative_cover:과제리뷰
+## :notebook_with_decorative_cover:과제 코드리뷰
 ### :pushpin: 엑셀 파일 위치 검색
 
 <pre>
