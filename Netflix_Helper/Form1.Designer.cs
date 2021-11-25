@@ -38,6 +38,7 @@ namespace Netflix_Helper
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.button3 = new System.Windows.Forms.Button();
             this.richTextBox3 = new System.Windows.Forms.RichTextBox();
+            this.button4 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -69,7 +70,7 @@ namespace Netflix_Helper
             this.comboBox1.Location = new System.Drawing.Point(171, 308);
             this.comboBox1.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(840, 48);
+            this.comboBox1.Size = new System.Drawing.Size(740, 48);
             this.comboBox1.TabIndex = 3;
             this.comboBox1.Text = "장르 검색(SF, ...)";
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
@@ -80,7 +81,7 @@ namespace Netflix_Helper
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(93, 53);
             this.button1.TabIndex = 4;
-            this.button1.Text = "검색";
+            this.button1.Text = "제목검색";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             this.button1.Enter += new System.EventHandler(this.button1_Click);
@@ -139,12 +140,23 @@ namespace Netflix_Helper
             this.richTextBox3.Text = "";
             this.richTextBox3.TextChanged += new System.EventHandler(this.richTextBox3_TextChanged);
             // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(919, 308);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(92, 48);
+            this.button4.TabIndex = 10;
+            this.button4.Text = "장르검색";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSlateGray;
             this.ClientSize = new System.Drawing.Size(1231, 916);
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.richTextBox3);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.richTextBox2);
@@ -173,6 +185,7 @@ namespace Netflix_Helper
         private System.Windows.Forms.RichTextBox richTextBox2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.RichTextBox richTextBox3;
+        private System.Windows.Forms.Button button4;
     }
 }
 
