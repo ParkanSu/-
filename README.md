@@ -4,7 +4,7 @@
 크롤링 -> C#을 통해 csv파일 호출 및 읽기 -> 검색 및 장르선택 기능을 통해 검색 
 
 ## :notebook_with_decorative_cover: 구현결과
-<img src="https://user-images.githubusercontent.com/81347125/143462681-6395d376-9dca-4cc9-9802-2a87d7ab6b26.gif" width="30%">  
+<img src="https://user-images.githubusercontent.com/81347125/143462681-6395d376-9dca-4cc9-9802-2a87d7ab6b26.gif" width="60%">  
 
 
 
