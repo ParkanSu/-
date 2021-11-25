@@ -21,6 +21,8 @@ namespace Netflix_Helper
         }
 
         private string filePath = "";
+        private string data_title = "";
+        private string data_genre = "";
 
         public void prepare_comboBox()
         {
@@ -57,7 +59,7 @@ namespace Netflix_Helper
         // 검색 버튼
         private void button1_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         // 엑셀 파일 위치 검색
@@ -100,6 +102,7 @@ namespace Netflix_Helper
 
         }
 
+        // 엑셀 내 데이터 읽기
         private void button3_Click(object sender, EventArgs e)
         {
             if (filePath != "") {
@@ -108,22 +111,41 @@ namespace Netflix_Helper
                 Worksheet worksheet1 = workbook.Worksheets.get_Item("Sheet1");
                 application.Visible = false;
                 Range range = worksheet1.UsedRange;
-                String data = "";
+                int num = 0;
                 
                 for (int i = 1; i <= range.Rows.Count; ++i) {
-                    for (int j = 1; j <= range.Columns.Count; ++j) {
-                        data += ((range.Cells[i, j] as Range).Value2.ToString() + " ");
+                    if( i == 1)
+                    {
+                        data_title += ((range.Cells[i, 1] as Range).Value2.ToString());
+                    }
+                    else
+                    {
+                        data_title += (num + ". " + (range.Cells[i, 1] as Range).Value2.ToString());
+                    }
+                    for (int j = 2; j <= range.Columns.Count; ++j) {
+                        data_genre += ((range.Cells[i, j] as Range).Value2.ToString() + " ");
                     } 
-                    data += "\n";
+                    data_title += "\n";
+                    data_title += "--------------------\n";
+                    data_genre += "\n";
+                    data_genre += "-------------------------------------------------\n";
+                    num++;
                 }
 
-                richTextBox1.Text = data;
+                richTextBox1.Text = data_title;
+                richTextBox3.Text = data_genre;
 
                 DeleteObject(worksheet1);
                 DeleteObject(workbook);
                 application.Quit();
                 DeleteObject(application);
             }
+        }
+
+        // 장르 출력
+        private void richTextBox3_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
