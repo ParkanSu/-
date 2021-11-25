@@ -28,34 +28,25 @@ namespace Netflix_Helper
             comboBox1.Items.Add("SF");
             comboBox1.Items.Add("드라마");
             comboBox1.Items.Add("스릴러");
+            comboBox1.Items.Add("액션");
+            comboBox1.Items.Add("범죄");
+            comboBox1.Items.Add("코미디");
+            comboBox1.Items.Add("다큐멘터리");
+            comboBox1.Items.Add("판타지");
+            comboBox1.Items.Add("스릴러");
+            comboBox1.Items.Add("음악");
+            comboBox1.Items.Add("스포츠");
+            comboBox1.Items.Add("서부");
+            comboBox1.Items.Add("애니메이션");
+            comboBox1.Items.Add("역사");
+            comboBox1.Items.Add("가족");
+            comboBox1.Items.Add("전쟁");
+            comboBox1.Items.Add("Reality TV");
+            comboBox1.Items.Add("Made in Europe");
         }
 
         // 제목
         private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        // 일반 검색
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-            // textBox1.Text
-        }
-
-        // 장르 검색
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        // 검색 버튼
-        private void button1_Click(object sender, EventArgs e)
         {
             richTextBox1.Clear();
             richTextBox3.Clear();
@@ -78,20 +69,90 @@ namespace Netflix_Helper
                     }
                     else
                     {
-                        if (textBox1.Text == (range.Cells[i, 1] as Range).Value2.ToString())
-                        {
-                             data_title += (num + ". " + (range.Cells[i, 1] as Range).Value2.ToString());
-                            for (int j = 2; j <= range.Columns.Count; ++j)
-                            {
-                                data_genre += ((range.Cells[i, j] as Range).Value2.ToString() + " ");
-                            }
-                        }
+                        data_title += (num + ". " + (range.Cells[i, 1] as Range).Value2.ToString());
+                    }
+                    for (int j = 2; j <= range.Columns.Count; ++j)
+                    {
+                        data_genre += ((range.Cells[i, j] as Range).Value2.ToString() + " ");
                     }
                     data_title += "\n";
                     data_title += "--------------------\n";
                     data_genre += "\n";
                     data_genre += "-------------------------------------------------\n";
                     num++;
+                }
+
+                richTextBox1.Text = data_title;
+                richTextBox3.Text = data_genre;
+
+                DeleteObject(worksheet1);
+                DeleteObject(workbook);
+                application.Quit();
+                DeleteObject(application);
+            }
+        }
+
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        // 일반 검색
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            // textBox1.Text
+        }
+
+        // 장르 검색
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        // 제목 검색 버튼
+        private void button1_Click(object sender, EventArgs e)
+        {
+            richTextBox1.Clear();
+            richTextBox3.Clear();
+            if (filePath != "")
+            {
+                Microsoft.Office.Interop.Excel.Application application = new Microsoft.Office.Interop.Excel.Application();
+                Workbook workbook = application.Workbooks.Open(Filename: @filePath);
+                Worksheet worksheet1 = workbook.Worksheets.get_Item("Sheet1");
+                application.Visible = false;
+                Range range = worksheet1.UsedRange;
+                String data_title = "";
+                String data_genre = "";
+                int num = 1;
+
+                for (int i = 1; i <= range.Rows.Count; ++i)
+                {
+                    if (i == 1)
+                    {
+                        data_title += ((range.Cells[i, 1] as Range).Value2.ToString());
+                        data_title += "\n";
+                        data_title += "--------------------\n";
+                        data_genre += ((range.Cells[i, 2] as Range).Value2.ToString());
+                        data_genre += "\n";
+                        data_genre += "-------------------------------------------------\n";
+                    }
+                    else
+                    {
+                        if (textBox1.Text == (range.Cells[i, 1] as Range).Value2.ToString())
+                        {
+                            data_title += (num + ". " + (range.Cells[i, 1] as Range).Value2.ToString());
+                            for (int j = 2; j <= range.Columns.Count; ++j)
+                            {
+                                data_genre += ((range.Cells[i, j] as Range).Value2.ToString());
+                                data_genre += "\n";
+                                data_genre += "-------------------------------------------------\n";
+                            }
+                            data_title += "\n";
+                            data_title += "--------------------\n";
+                            num++;
+                        }
+                    }
                 }
 
                 richTextBox1.Text = data_title;
@@ -190,6 +251,61 @@ namespace Netflix_Helper
         private void richTextBox3_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        // 장르 검색 버튼
+        private void button4_Click(object sender, EventArgs e)
+        {
+            richTextBox1.Clear();
+            richTextBox3.Clear();
+            if (filePath != "")
+            {
+                Microsoft.Office.Interop.Excel.Application application = new Microsoft.Office.Interop.Excel.Application();
+                Workbook workbook = application.Workbooks.Open(Filename: @filePath);
+                Worksheet worksheet1 = workbook.Worksheets.get_Item("Sheet1");
+                application.Visible = false;
+                Range range = worksheet1.UsedRange;
+                String data_title = "";
+                String data_genre = "";
+                int num = 0;
+
+                for (int i = 1; i <= range.Rows.Count; ++i)
+                {
+                    if (i == 1)
+                    {
+                        data_title += ((range.Cells[i, 1] as Range).Value2.ToString());
+                        data_title += "\n";
+                        data_title += "--------------------\n";
+                        data_genre += ((range.Cells[i, 2] as Range).Value2.ToString());
+                        data_genre += "\n";
+                        data_genre += "-------------------------------------------------\n";
+                    }
+                    else
+                    {
+                        if (comboBox1.SelectedItem.ToString() == (range.Cells[i, 2] as Range).Value2.ToString())
+                        {
+                            data_title += (num + ". " + (range.Cells[i, 1] as Range).Value2.ToString());
+                            for (int j = 2; j <= range.Columns.Count; ++j)
+                            {
+                                data_genre += ((range.Cells[i, j] as Range).Value2.ToString());
+                                data_genre += "\n";
+                                data_genre += "-------------------------------------------------\n";
+                            }
+                            data_title += "\n";
+                            data_title += "--------------------\n";
+                            num++;
+                        }
+                    }
+                }
+
+                richTextBox1.Text = data_title;
+                richTextBox3.Text = data_genre;
+
+                DeleteObject(worksheet1);
+                DeleteObject(workbook);
+                application.Quit();
+                DeleteObject(application);
+            }
         }
     }
 }
