@@ -21,8 +21,6 @@ namespace Netflix_Helper
         }
 
         private string filePath = "";
-        private string data_title = "";
-        private string data_genre = "";
 
         public void prepare_comboBox()
         {
@@ -59,7 +57,51 @@ namespace Netflix_Helper
         // 검색 버튼
         private void button1_Click(object sender, EventArgs e)
         {
-            
+            richTextBox1.Clear();
+            richTextBox3.Clear();
+            if (filePath != "")
+            {
+                Microsoft.Office.Interop.Excel.Application application = new Microsoft.Office.Interop.Excel.Application();
+                Workbook workbook = application.Workbooks.Open(Filename: @filePath);
+                Worksheet worksheet1 = workbook.Worksheets.get_Item("Sheet1");
+                application.Visible = false;
+                Range range = worksheet1.UsedRange;
+                String data_title = "";
+                String data_genre = "";
+                int num = 0;
+
+                for (int i = 1; i <= range.Rows.Count; ++i)
+                {
+                    if (i == 1)
+                    {
+                        data_title += ((range.Cells[i, 1] as Range).Value2.ToString());
+                    }
+                    else
+                    {
+                        if (textBox1.Text == (range.Cells[i, 1] as Range).Value2.ToString())
+                        {
+                             data_title += (num + ". " + (range.Cells[i, 1] as Range).Value2.ToString());
+                            for (int j = 2; j <= range.Columns.Count; ++j)
+                            {
+                                data_genre += ((range.Cells[i, j] as Range).Value2.ToString() + " ");
+                            }
+                        }
+                    }
+                    data_title += "\n";
+                    data_title += "--------------------\n";
+                    data_genre += "\n";
+                    data_genre += "-------------------------------------------------\n";
+                    num++;
+                }
+
+                richTextBox1.Text = data_title;
+                richTextBox3.Text = data_genre;
+
+                DeleteObject(worksheet1);
+                DeleteObject(workbook);
+                application.Quit();
+                DeleteObject(application);
+            }
         }
 
         // 엑셀 파일 위치 검색
@@ -111,6 +153,8 @@ namespace Netflix_Helper
                 Worksheet worksheet1 = workbook.Worksheets.get_Item("Sheet1");
                 application.Visible = false;
                 Range range = worksheet1.UsedRange;
+                String data_title = "";
+                String data_genre = "";
                 int num = 0;
                 
                 for (int i = 1; i <= range.Rows.Count; ++i) {
